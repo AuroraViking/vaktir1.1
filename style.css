@@ -1,0 +1,131 @@
+body { 
+  margin: 0;
+  background: linear-gradient(to top, #000000, #0a0a23, #1a1a40);
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+#logo {
+  width: 150px;
+  margin: 20px auto;
+  display: block;
+  filter: drop-shadow(0px 0px 10px #00ffe1);
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #00ffe1;
+  text-shadow: 0 0 5px #00ffe1, 0 0 10px #00ffe1;
+}
+
+#month-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#month-tabs button {
+  margin: 5px;
+  padding: 10px 20px;
+  background: #222;
+  border: 1px solid #00ffe1;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+#month-tabs button:hover {
+  background: #00ffe1;
+  color: black;
+  transform: scale(1.05);
+}
+
+.month-tab.selected {
+  background: #00ffe1;
+  color: black;
+}
+
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.day {
+  background: #111;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #00ffe1;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.day:hover {
+  transform: scale(1.1);
+  background: #00ffe1;
+  color: black;
+}
+
+.day.selected {
+  background: #00ffe1;
+  color: black;
+  box-shadow: 0px 0px 15px #00ffe1, 0px 0px 25px #00ffe1;
+}
+
+#form {
+  margin-top: 30px;
+}
+
+#form input, #form textarea {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  background: #222;
+  border: 1px solid #00ffe1;
+  color: white;
+  border-radius: 6px;
+}
+
+#form button {
+  padding: 12px 25px;
+  margin-top: 10px;
+  background: #00ffe1;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+  transition: transform 0.2s;
+}
+
+#form button:hover {
+  transform: scale(1.05);
+}
+
+#confirmation {
+  margin-top: 20px;
+  color: #00ffe1;
+  font-size: 1.5em;
+  text-shadow: 0 0 10px #00ffe1;
+}
+
+/* ADDITIONS FOR PULSE EFFECT */
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px #00ffe1; }
+  50% { box-shadow: 0 0 25px #00ffe1; }
+  100% { box-shadow: 0 0 10px #00ffe1; }
+}
+
+.day.full {
+  animation: pulse 2s infinite;
+}
