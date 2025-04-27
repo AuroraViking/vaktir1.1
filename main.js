@@ -628,7 +628,8 @@ window.onload = function() {
         logoutButton.innerText = "Logout";
         logoutButton.style.position = "fixed";
         logoutButton.style.top = "10px";
-        logoutButton.style.right = "130px"; // Position to the left of the badge
+        logoutButton.style.left = "10px"; // Move logout button to left
+        logoutButton.style.right = "unset"; // Unset right positioning
         logoutButton.style.padding = "10px 20px";
         logoutButton.style.background = "#444";
         logoutButton.style.color = "white";
@@ -682,7 +683,10 @@ window.onload = function() {
         renderTabs();
         renderMyShiftsWithName(loggedInGuide.name);
         // Auto-fill the name field for the logged-in guide
-        document.getElementById("name").value = loggedInGuide.name;
+const nameInput = document.getElementById("name");
+if (nameInput) {
+  nameInput.remove(); // Cleanly remove the name input from the page
+}
       } else {
         renderCalendar();
       }
