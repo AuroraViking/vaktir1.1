@@ -701,10 +701,11 @@ if (loggedInGuide) {
   }
 }
 
-  const nameInput = document.getElementById("name");
-  if (nameInput) {
-    nameInput.remove();
-  }
+ const nameInput = document.getElementById("name");
+if (nameInput) {
+  nameInput.style.display = "none"; 
+}
+
 } else {
   await fetchSignups();
   renderTabs();
