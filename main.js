@@ -571,33 +571,34 @@ if (nameInput) {
         adminBadge.innerText = "Admin Mode";
         document.body.appendChild(adminBadge);
 
-        // Create Navigation Dropdown next to badge
+      // Create Navigation Dropdown next to Logout Button
 const navMenu = document.createElement("div");
 navMenu.style.position = "fixed";
 navMenu.style.top = "10px";
-navMenu.style.right = "200px"; // Distance from right edge
+navMenu.style.left = "160px"; // 160px right of the logout button
 navMenu.style.zIndex = "999";
+
 navMenu.innerHTML = `
   <select id="navigationSelect" style="
-    font-size: 16px; 
-    padding: 8px 12px; 
-    background: #111; 
-    border: 2px solid #00ffe1; 
-    color: #00ffe1; 
-    border-radius: 8px; 
-    font-weight: bold; 
+    font-size: 16px;
+    padding: 8px 12px;
+    background: #111;
+    border: 2px solid #00ffe1;
+    color: #00ffe1;
+    border-radius: 8px;
+    font-weight: bold;
     box-shadow: 0 0 15px #00ffe1, 0 0 30px #00ffe1;
     animation: glowPulse 2.5s infinite alternate;
     cursor: pointer;
   ">
-    <option value="">🌟 Select Destination...</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/">🛡 Fleet Tracker - Tablet (Guides)</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/dashboard.html">🚀 Fleet Dashboard (Admin)</option>
+    <option value="">Valmöguleikar</option>
+    <option value="https://auroraviking.github.io/FleetTracker1.0/">Fleet Tracker - Tablet</option>
+    <option value="https://auroraviking.github.io/FleetTracker1.0/dashboard.html">Fleet Dashboard - Admin</option>
   </select>
 `;
 document.body.appendChild(navMenu);
 
-// Redirect when an option is selected
+// Redirect when a selection is made
 document.getElementById('navigationSelect').addEventListener('change', (e) => {
   const url = e.target.value;
   if (url) {
@@ -629,35 +630,37 @@ document.getElementById('navigationSelect').addEventListener('change', (e) => {
         guideBadge.style.color = "white";
         guideBadge.style.padding = "10px 20px";
         guideBadge.style.borderRadius = "8px";
-        guideBadge.innerText = `Guide: ${loggedInGuide.name}`;
+        guideBadge.innerText = `Guide: ${loggedInGuide.name}`;        
+        document.body.appendChild(guideBadge);
 
-// Create Navigation Dropdown next to badge
+        // Create Navigation Dropdown next to Logout Button
 const navMenu = document.createElement("div");
 navMenu.style.position = "fixed";
 navMenu.style.top = "10px";
-navMenu.style.right = "200px"; // Distance from right edge
+navMenu.style.left = "160px"; // 160px right of the logout button
 navMenu.style.zIndex = "999";
+
 navMenu.innerHTML = `
   <select id="navigationSelect" style="
-    font-size: 16px; 
-    padding: 8px 12px; 
-    background: #111; 
-    border: 2px solid #00ffe1; 
-    color: #00ffe1; 
-    border-radius: 8px; 
-    font-weight: bold; 
+    font-size: 16px;
+    padding: 8px 12px;
+    background: #111;
+    border: 2px solid #00ffe1;
+    color: #00ffe1;
+    border-radius: 8px;
+    font-weight: bold;
     box-shadow: 0 0 15px #00ffe1, 0 0 30px #00ffe1;
     animation: glowPulse 2.5s infinite alternate;
     cursor: pointer;
   ">
-    <option value="">🌟 Select Destination...</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/">🛡 Fleet Tracker - Tablet (Guides)</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/dashboard.html">🚀 Fleet Dashboard (Admin)</option>
+    <option value="">Valmöguleikar</option>
+    <option value="https://auroraviking.github.io/FleetTracker1.0/">Fleet Tracker - Tablet</option>
+    <option value="https://auroraviking.github.io/FleetTracker1.0/dashboard.html">Fleet Dashboard - Admin</option>
   </select>
 `;
 document.body.appendChild(navMenu);
 
-// Redirect when an option is selected
+// Redirect when a selection is made
 document.getElementById('navigationSelect').addEventListener('change', (e) => {
   const url = e.target.value;
   if (url) {
@@ -665,8 +668,6 @@ document.getElementById('navigationSelect').addEventListener('change', (e) => {
   }
 });
 
-        
-        document.body.appendChild(guideBadge);
         
         // Add logout button
         const logoutButton = document.createElement("button");
