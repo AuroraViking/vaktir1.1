@@ -129,3 +129,8 @@ h1 {
 .day.full {
   animation: pulse 2s infinite;
 }
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1; }
+  100% { box-shadow: 0 0 20px #00ffe1, 0 0 40px #00ffe1; }
+}
