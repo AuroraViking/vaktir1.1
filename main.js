@@ -18,17 +18,27 @@ window.onload = function() {
     let isAdmin = false;
     let loggedInGuide = null;
 
-    // Create hidden inputs needed by the app
+    // Create hidden inputs needed by the app - ensuring they remain hidden
     function setupHiddenElements() {
+      // Check if elements already exist and remove them
+      const existingNameInput = document.getElementById("name");
+      if (existingNameInput) existingNameInput.remove();
+      
+      const existingSubmitButton = document.getElementById("submit");
+      if (existingSubmitButton) existingSubmitButton.remove();
+      
+      // Create truly hidden elements
       const hiddenNameInput = document.createElement("input");
       hiddenNameInput.id = "name";
       hiddenNameInput.type = "text";
       hiddenNameInput.style.display = "none";
+      hiddenNameInput.setAttribute("aria-hidden", "true");
       document.body.appendChild(hiddenNameInput);
 
       const hiddenSubmitButton = document.createElement("button");
       hiddenSubmitButton.id = "submit";
       hiddenSubmitButton.style.display = "none";
+      hiddenSubmitButton.setAttribute("aria-hidden", "true");
       document.body.appendChild(hiddenSubmitButton);
     }
     
@@ -496,7 +506,10 @@ window.onload = function() {
         renderTabs();
         renderCalendar();
         // Pre-fill the name field with the guide's name
-        document.getElementById("name").value = guideName;
+        const nameInput = document.getElementById("name");
+        if (nameInput) {
+          nameInput.value = guideName;
+        }
       };
       
       cal.appendChild(signupButton);
@@ -606,8 +619,13 @@ window.onload = function() {
         return;
       }
       
-      const name = document.getElementById("name").value.trim();
-      if (!name) return;
+      const nameInput = document.getElementById("name");
+      const name = nameInput ? nameInput.value.trim() : "";
+      
+      if (!name) {
+        alert("Guide name is missing");
+        return;
+      }
       
       if (selectedDays.length === 0) {
         alert("Please select at least one day");
@@ -627,8 +645,6 @@ window.onload = function() {
           }
 
           selectedDays = [];
-          document.getElementById("name").value = "";
-          document.getElementById("calendar").innerHTML = "";
           
           const confirmation = document.getElementById("confirmation");
           if (confirmation) {
@@ -791,19 +807,19 @@ window.onload = function() {
         });
         document.body.appendChild(guideBadge);
         
-        // Set up name input for the guide
+        // Setup name for the guide - ensure it's hidden
         const nameInput = document.getElementById("name");
         if (nameInput) {
           nameInput.style.display = "none";
+          nameInput.setAttribute("aria-hidden", "true");
           nameInput.value = loggedInGuide.name;
         }
         
-        // Set up submit button and create signup button
-        document.getElementById("submit").onclick = submitSignup;
+        // Create signup button for the guide
         createSignupButton();
       }
 
-      // Load data and render calendar
+    // Load data and render calendar
       await fetchSignups();
       renderTabs();
       renderCalendar();
