@@ -22,7 +22,6 @@ window.onload = function() {
     let tempComment = "";
     let isAdmin = false;
     let loggedInGuide = null; // Store logged in guide object
-    let isGuest = false;
 
     // Show login options or registration
     async function showLoginOptions() {
@@ -44,7 +43,6 @@ window.onload = function() {
         <input id="login-password" type="password" placeholder="Password" 
           style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; background: #111; color: white; border: 1px solid #00ffe1; border-radius: 8px;">
         <div style="display: flex; justify-content: space-around; margin-top: 20px;">
-          <button id="guide-login" style="padding: 10px 20px; background: #555; color: white; border: none; border-radius: 8px; cursor: pointer;">Guide Login</button>
           <button id="admin-login" style="padding: 10px 20px; background: #00ffe1; color: black; border: none; border-radius: 8px; cursor: pointer;">Admin Login</button>
           <button id="guest-login" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 8px; cursor: pointer;">Continue as Guest</button>
         </div>
@@ -93,11 +91,6 @@ window.onload = function() {
         }
       };
 
-      document.getElementById("guest-login").onclick = () => {
-        isGuest = true;
-        loginPopup.remove();
-        initApp();
-      };
       
       document.getElementById("show-register").onclick = () => {
         loginPopup.remove();
@@ -288,24 +281,6 @@ window.onload = function() {
       const cal = document.getElementById("calendar");
       cal.innerHTML = "";
       
-      if (isGuest) {
-        const guestMessage = document.createElement("div");
-        guestMessage.style.background = "#333";
-        guestMessage.style.padding = "10px";
-        guestMessage.style.marginBottom = "20px";
-        guestMessage.style.borderRadius = "8px";
-        guestMessage.style.textAlign = "center";
-        guestMessage.innerHTML = `
-          <p>You are in guest view mode. <a href="#" id="switch-to-login" style="color: #00ffe1; text-decoration: underline;">Login</a> to sign up for shifts.</p>
-        `;
-        cal.appendChild(guestMessage);
-        
-        document.getElementById("switch-to-login").onclick = (e) => {
-          e.preventDefault();
-          location.reload(); // Reload to show login screen
-        };
-      }
-      
       for (let day = 1; day <= daysInMonth[selectedMonth]; day++) {
         const div = document.createElement("div");
         div.className = "day";
@@ -330,13 +305,6 @@ window.onload = function() {
         cal.appendChild(div);
       }
       
-      // Hide the name input and submit button for guests
-      if (isGuest) {
-        const nameInput = document.getElementById("name");
-        const submitButton = document.getElementById("submit");
-        if (nameInput) nameInput.style.display = "none";
-        if (submitButton) submitButton.style.display = "none";
-      }
     }
 
     function toggleDay(day, element) {
@@ -640,36 +608,7 @@ window.onload = function() {
           location.reload(); // Simple reload to log out
         };
         document.body.appendChild(logoutButton);
-      } else if (isGuest) {
-        // Add badge for guest user
-        const guestBadge = document.createElement("div");
-        guestBadge.style.position = "fixed";
-        guestBadge.style.top = "10px";
-        guestBadge.style.right = "10px";
-        guestBadge.style.background = "#333";
-        guestBadge.style.color = "white";
-        guestBadge.style.padding = "10px 20px";
-        guestBadge.style.borderRadius = "8px";
-        guestBadge.innerText = "Guest View";
-        document.body.appendChild(guestBadge);
-        
-        // Add login button
-        const loginButton = document.createElement("button");
-        loginButton.innerText = "Login";
-        loginButton.style.position = "fixed";
-        loginButton.style.top = "10px";
-        loginButton.style.right = "130px";
-        loginButton.style.padding = "10px 20px";
-        loginButton.style.background = "#00ffe1";
-        loginButton.style.color = "black";
-        loginButton.style.border = "none";
-        loginButton.style.borderRadius = "8px";
-        loginButton.style.cursor = "pointer";
-        loginButton.onclick = () => {
-          location.reload(); // Simple reload to show login screen
-        };
-        document.body.appendChild(loginButton);
-      }
+      } 
 
       // Set up submit button handler
       document.getElementById("submit").onclick = submitSignup;
