@@ -694,17 +694,15 @@ renderTabs();
 renderCalendar(); // Always render the calendar!
 
 if (loggedInGuide) {
-  viewingMyShifts = false; // show calendar first, not 'my shifts'
+  viewingMyShifts = false;
+
   const nameInput = document.getElementById("name");
   if (nameInput) {
-    nameInput.remove(); // Hide name field for guide
+    nameInput.style.display = "none"; // ✅ Correct: just hide it
+    nameInput.value = loggedInGuide.name; // ✅ Auto-fill guide's name!
   }
 }
 
- const nameInput = document.getElementById("name");
-if (nameInput) {
-  nameInput.style.display = "none"; 
-}
 
 } else {
   await fetchSignups();
