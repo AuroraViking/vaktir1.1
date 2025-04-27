@@ -704,7 +704,27 @@ document.getElementById('navigationSelect').addEventListener('change', (e) => {
       // Fetch data and render appropriate view
 await fetchSignups();
 renderTabs();
-renderCalendar(); // Always render the calendar!
+renderCalendar(); // 
+
+        // Real Skrá mig button for submitting selected shifts
+const skraMigButton = document.createElement("button");
+skraMigButton.innerText = "✅ Skrá mig á valda daga";
+skraMigButton.style.position = "fixed";
+skraMigButton.style.bottom = "10px";
+skraMigButton.style.left = "50%";
+skraMigButton.style.transform = "translateX(-50%)";
+skraMigButton.style.padding = "15px 30px";
+skraMigButton.style.background = "#00ffe1";
+skraMigButton.style.color = "black";
+skraMigButton.style.border = "none";
+skraMigButton.style.borderRadius = "8px";
+skraMigButton.style.fontSize = "20px";
+skraMigButton.style.cursor = "pointer";
+skraMigButton.style.boxShadow = "0 0 20px #00ffe1, 0 0 40px #00ffe1";
+skraMigButton.style.animation = "glowPulse 2s infinite alternate";
+skraMigButton.onclick = submitSignup;
+document.body.appendChild(skraMigButton);
+
 
 if (loggedInGuide) {
   viewingMyShifts = false;
