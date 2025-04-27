@@ -3,6 +3,12 @@ import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc, query, where, g
 window.onload = function() {
   setTimeout(async function() {
 
+    const nameInput = document.getElementById("name");
+if (nameInput) {
+  nameInput.style.display = "none"; // Just hide it, don't remove
+}
+
+
     const months = ["September", "October", "November", "December", "January", "February", "March", "April"];
     const daysInMonth = {
       September: 30,
