@@ -10,12 +10,6 @@ hiddenNameInput.type = "text";
 hiddenNameInput.style.display = "none";
 document.body.appendChild(hiddenNameInput);
 
-const hiddenSubmitButton = document.createElement("button");
-hiddenSubmitButton.id = "submit";
-hiddenSubmitButton.style.display = "none";
-document.body.appendChild(hiddenSubmitButton);
-
-
     const nameInput = document.getElementById("name");
 if (nameInput) {
   nameInput.style.display = "none"; // Just hide it, don't remove
