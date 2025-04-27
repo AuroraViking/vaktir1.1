@@ -3,6 +3,19 @@ import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc, query, where, g
 window.onload = function() {
   setTimeout(async function() {
 
+// Create hidden input and submit button early
+const hiddenNameInput = document.createElement("input");
+hiddenNameInput.id = "name";
+hiddenNameInput.type = "text";
+hiddenNameInput.style.display = "none";
+document.body.appendChild(hiddenNameInput);
+
+const hiddenSubmitButton = document.createElement("button");
+hiddenSubmitButton.id = "submit";
+hiddenSubmitButton.style.display = "none";
+document.body.appendChild(hiddenSubmitButton);
+
+
     const nameInput = document.getElementById("name");
 if (nameInput) {
   nameInput.style.display = "none"; // Just hide it, don't remove
