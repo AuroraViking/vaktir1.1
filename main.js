@@ -298,9 +298,8 @@ window.onload = function() {
         }
 
         // Only allow clicking days if not in guest mode
-        if (!isGuest) {
-          div.onclick = () => toggleDay(day, div);
-        }
+        div.onclick = () => toggleDay(day, div);
+
         div.ondblclick = () => showDaySignups(dateKey);
 
         cal.appendChild(div);
