@@ -571,11 +571,11 @@ if (nameInput) {
         adminBadge.innerText = "Admin Mode";
         document.body.appendChild(adminBadge);
 
-      // Create Navigation Dropdown next to Logout Button
+    // Create Combined Navigation + Logout Menu
 const navMenu = document.createElement("div");
 navMenu.style.position = "fixed";
 navMenu.style.top = "10px";
-navMenu.style.left = "160px"; // 160px right of the logout button
+navMenu.style.left = "10px"; // top left corner
 navMenu.style.zIndex = "999";
 
 navMenu.innerHTML = `
@@ -592,17 +592,22 @@ navMenu.innerHTML = `
     cursor: pointer;
   ">
     <option value="">Valmöguleikar</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/">Fleet Tracker - Tablet</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/dashboard.html">Fleet Dashboard - Admin</option>
+    <option value="tracker">Fleet Tracker - Tablet</option>
+    ${isAdmin ? '<option value="dashboard">Fleet Dashboard - Admin</option>' : ''}
+    <option value="logout">Logout</option>
   </select>
 `;
 document.body.appendChild(navMenu);
 
-// Redirect when a selection is made
+// Handle selection changes
 document.getElementById('navigationSelect').addEventListener('change', (e) => {
-  const url = e.target.value;
-  if (url) {
-    window.location.href = url;
+  const choice = e.target.value;
+  if (choice === "tracker") {
+    window.location.href = "https://auroraviking.github.io/FleetTracker1.0/";
+  } else if (choice === "dashboard") {
+    window.location.href = "https://auroraviking.github.io/FleetTracker1.0/dashboard.html";
+  } else if (choice === "logout") {
+    location.reload(); // simple logout
   }
 });
 
@@ -633,11 +638,11 @@ document.getElementById('navigationSelect').addEventListener('change', (e) => {
         guideBadge.innerText = `Guide: ${loggedInGuide.name}`;        
         document.body.appendChild(guideBadge);
 
-        // Create Navigation Dropdown next to Logout Button
+      // Create Combined Navigation + Logout Menu
 const navMenu = document.createElement("div");
 navMenu.style.position = "fixed";
 navMenu.style.top = "10px";
-navMenu.style.left = "160px"; // 160px right of the logout button
+navMenu.style.left = "10px"; // top left corner
 navMenu.style.zIndex = "999";
 
 navMenu.innerHTML = `
@@ -654,52 +659,42 @@ navMenu.innerHTML = `
     cursor: pointer;
   ">
     <option value="">Valmöguleikar</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/">Fleet Tracker - Tablet</option>
-    <option value="https://auroraviking.github.io/FleetTracker1.0/dashboard.html">Fleet Dashboard - Admin</option>
+    <option value="tracker">Fleet Tracker - Tablet</option>
+    ${isAdmin ? '<option value="dashboard">Fleet Dashboard - Admin</option>' : ''}
+    <option value="logout">Logout</option>
   </select>
 `;
 document.body.appendChild(navMenu);
 
-// Redirect when a selection is made
+// Handle selection changes
 document.getElementById('navigationSelect').addEventListener('change', (e) => {
-  const url = e.target.value;
-  if (url) {
-    window.location.href = url;
+  const choice = e.target.value;
+  if (choice === "tracker") {
+    window.location.href = "https://auroraviking.github.io/FleetTracker1.0/";
+  } else if (choice === "dashboard") {
+    window.location.href = "https://auroraviking.github.io/FleetTracker1.0/dashboard.html";
+  } else if (choice === "logout") {
+    location.reload(); // simple logout
   }
 });
 
-        
-        // Add logout button
-        const logoutButton = document.createElement("button");
-        logoutButton.innerText = "Logout";
-        logoutButton.style.position = "fixed";
-        logoutButton.style.top = "10px";
-        logoutButton.style.left = "10px"; // Move logout button to left
-        logoutButton.style.right = "unset"; // Unset right positioning
-        logoutButton.style.padding = "10px 20px";
-        logoutButton.style.background = "#444";
-        logoutButton.style.color = "white";
-        logoutButton.style.border = "none";
-        logoutButton.style.borderRadius = "8px";
-        logoutButton.style.cursor = "pointer";
-        logoutButton.onclick = () => {
-          location.reload(); // Simple reload to log out
-        };
-        document.body.appendChild(logoutButton);
-      } 
 
       // Set up submit button handler
       document.getElementById("submit").onclick = submitSignup;
       
       // Fetch data and render appropriate view
-      await fetchSignups();
-      renderTabs();
-      
-     if (loggedInGuide) {
-  viewingMyShifts = false; // << show calendar first, not 'my shifts'
-  await fetchSignups();     // << fetch data again
-  renderTabs();
-  renderCalendar();         // << render normal calendar after login
+await fetchSignups();
+renderTabs();
+renderCalendar(); // Always render the calendar!
+
+if (loggedInGuide) {
+  viewingMyShifts = false; // show calendar first, not 'my shifts'
+  const nameInput = document.getElementById("name");
+  if (nameInput) {
+    nameInput.remove(); // Hide name field for guide
+  }
+}
+
   const nameInput = document.getElementById("name");
   if (nameInput) {
     nameInput.remove();
