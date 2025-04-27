@@ -92,6 +92,12 @@ window.onload = function() {
           alert("Incorrect admin password");
         }
       };
+
+      document.getElementById("guest-login").onclick = () => {
+        isGuest = true;
+        loginPopup.remove();
+        initApp();
+      };
       
       document.getElementById("show-register").onclick = () => {
         loginPopup.remove();
