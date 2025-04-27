@@ -683,14 +683,18 @@ document.getElementById('navigationSelect').addEventListener('change', (e) => {
       document.getElementById("submit").onclick = submitSignup;
       
       // Fetch data and render appropriate view
-      await fetchSignups();
-      renderTabs();
-      
-     if (loggedInGuide) {
-  viewingMyShifts = false; // << show calendar first, not 'my shifts'
-  await fetchSignups();     // << fetch data again
-  renderTabs();
-  renderCalendar();         // << render normal calendar after login
+await fetchSignups();
+renderTabs();
+renderCalendar(); // Always render the calendar!
+
+if (loggedInGuide) {
+  viewingMyShifts = false; // show calendar first, not 'my shifts'
+  const nameInput = document.getElementById("name");
+  if (nameInput) {
+    nameInput.remove(); // Hide name field for guide
+  }
+}
+
   const nameInput = document.getElementById("name");
   if (nameInput) {
     nameInput.remove();
