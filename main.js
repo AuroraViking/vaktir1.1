@@ -518,12 +518,11 @@ if (nameInput) {
       };
     }
 
-    async function submitSignup() {
-      // Don't allow guests to submit
-      if (isGuest) {
-        alert("Please log in to sign up for shifts");
-        return;
-      }
+async function submitSignup() {
+  if (!loggedInGuide) {
+    alert("Please log in as a guide to sign up for shifts");
+    return;
+  }
       
       const name = document.getElementById("name").value.trim();
       if (!name) return;
