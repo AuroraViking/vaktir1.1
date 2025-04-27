@@ -618,18 +618,21 @@ window.onload = function() {
       await fetchSignups();
       renderTabs();
       
-      if (loggedInGuide) {
-        viewingMyShifts = true;
-        renderTabs();
-        renderMyShiftsWithName(loggedInGuide.name);
-        // Auto-fill the name field for the logged-in guide
-const nameInput = document.getElementById("name");
-if (nameInput) {
-  nameInput.remove(); // Cleanly remove the name input from the page
+     if (loggedInGuide) {
+  viewingMyShifts = false; // << show calendar first, not 'my shifts'
+  await fetchSignups();     // << fetch data again
+  renderTabs();
+  renderCalendar();         // << render normal calendar after login
+  const nameInput = document.getElementById("name");
+  if (nameInput) {
+    nameInput.remove();
+  }
+} else {
+  await fetchSignups();
+  renderTabs();
+  renderCalendar();
 }
-      } else {
-        renderCalendar();
-      }
+
     }
 
     // Check if the 'guides' collection exists, create it if not
