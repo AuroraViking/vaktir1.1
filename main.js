@@ -625,6 +625,12 @@ document.getElementById('navigationSelect').addEventListener('change', (e) => {
         exportButton.style.cursor = "pointer";
         exportButton.onclick = exportSignups;
         document.body.appendChild(exportButton);
+
+        await fetchSignups();
+        renderTabs();
+        renderCalendar();
+
+        
       } else if (loggedInGuide) {
         // Add badge for logged in guide
         const guideBadge = document.createElement("div");
@@ -727,4 +733,5 @@ if (loggedInGuide) {
 
   }, 100);
 };
-    
+
+        
