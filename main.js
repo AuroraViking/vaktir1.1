@@ -36,19 +36,20 @@ window.onload = function() {
       loginPopup.style.borderRadius = "10px";
       loginPopup.style.zIndex = "1000";
       loginPopup.style.textAlign = "center";
-      loginPopup.innerHTML = `
-        <h2 style="margin-bottom: 20px;">Login</h2>
-        <input id="login-email" type="email" placeholder="Email" 
-          style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; background: #111; color: white; border: 1px solid #00ffe1; border-radius: 8px;">
-        <input id="login-password" type="password" placeholder="Password" 
-          style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; background: #111; color: white; border: 1px solid #00ffe1; border-radius: 8px;">
-        <div style="display: flex; justify-content: space-around; margin-top: 20px;">
-          <button id="admin-login" style="padding: 10px 20px; background: #00ffe1; color: black; border: none; border-radius: 8px; cursor: pointer;">Admin Login</button>
-          <button id="guest-login" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 8px; cursor: pointer;">Continue as Guest</button>
-        </div>
-        <hr style="margin: 20px 0; border-color: #555;">
-        <p>New guide? <button id="show-register" style="background: none; border: none; color: #00ffe1; cursor: pointer; text-decoration: underline;">Register here</button></p>
-      `;
+     loginPopup.innerHTML = `
+  <h2 style="margin-bottom: 20px;">Login</h2>
+  <input id="login-email" type="email" placeholder="Email" 
+    style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; background: #111; color: white; border: 1px solid #00ffe1; border-radius: 8px;">
+  <input id="login-password" type="password" placeholder="Password" 
+    style="width: 100%; padding: 12px; margin: 10px 0; font-size: 16px; background: #111; color: white; border: 1px solid #00ffe1; border-radius: 8px;">
+  <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+    <button id="guide-login" style="padding: 10px 20px; background: #555; color: white; border: none; border-radius: 8px; cursor: pointer;">Guide Login</button>
+    <button id="admin-login" style="padding: 10px 20px; background: #00ffe1; color: black; border: none; border-radius: 8px; cursor: pointer;">Admin Login</button>
+  </div>
+  <hr style="margin: 20px 0; border-color: #555;">
+  <p>New guide? <button id="show-register" style="background: none; border: none; color: #00ffe1; cursor: pointer; text-decoration: underline;">Register here</button></p>
+`;
+
       document.body.appendChild(loginPopup);
 
       document.getElementById("guide-login").onclick = async () => {
@@ -651,3 +652,4 @@ if (nameInput) {
 
   }, 100);
 };
+
